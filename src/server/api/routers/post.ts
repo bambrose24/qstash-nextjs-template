@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { QueueService } from "~/app/_services/QStash";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
@@ -15,6 +16,13 @@ const posts: Post[] = [
 ];
 
 export const postRouter = createTRPCRouter({
+  addToQueue: publicProcedure.mutation(async () => {
+    await QueueService.publish({
+      queue: "process-post",
+      data: { postId: 1 },
+    });
+    return true;
+  }),
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
