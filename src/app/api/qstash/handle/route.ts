@@ -36,7 +36,7 @@ async function handler(request: Request) {
       return getErrorResponse(handlerResponse.message);
     }
   } catch (e) {
-    const errorLogMessage = `${QUEUE_LOG_PREFIX} The queue handler service threw an error processing a qstash message: ${e}`;
+    const errorLogMessage = `${QUEUE_LOG_PREFIX} The queue handler service threw an error processing a qstash message`;
     getLogger().error(errorLogMessage, {
       payload: dataText,
     });

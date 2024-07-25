@@ -1,29 +1,17 @@
-# Create T3 App
+# QStash NextJS publisher and handler
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This template shows you how to build a QStash queue handler, and provides a simple type-safe wrapper to build and publish messages to queues.
 
-## What's next? How do I make an app with this?
+The way Upstash's QStash works is that it lets you publish to a queue, then QStash will handle sending that payload to a specified URL of your choosing. This is then part of the request payload. We use Next.js as the backend here to process the messages, as well as provide an example of how to publish a message to a queue. Everything is serialized/deserialized with SuperJSON, and validated with zod.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+The result is that you only have to build out a `handler` that lets you process a message, and you get the rest for free. You specify the payload you're expecting, and you'll get a type-safe async function to do your work in processing the message.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+This project was initialized with [T3 Stack](https://create.t3.gg/) bootstrapped with `create-t3-app`. Please read more about their documentation and generally about Next.js if you're curious.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Quick Start
 
-## Learn More
+1. Create a project on Upstash and associate all of the correct variables.
+2. Create a Queue in the QStash tab with the name of the queue(s) in `src/app/_services/QStash/types.ts`. If you want to see messages immediately, create a queue named `process-post` so you can test it out.
+3. Open the home page of the deployed Next.js app and click the button. You should see that the message shows up in QStash, then you should see logs in your deployment logs for processing the message.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+You can now extend this to handle all of your background work super simply. No more setup required!
