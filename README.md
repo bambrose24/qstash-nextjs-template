@@ -1,4 +1,4 @@
-# QStash NextJS publisher and handler
+## QStash NextJS publisher and handler
 
 This template shows you how to build a QStash queue handler, and provides a simple type-safe wrapper to build and publish messages to queues.
 
